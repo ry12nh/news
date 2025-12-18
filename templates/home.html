@@ -7,9 +7,13 @@
 Hi {{ user.username }}! You are {{ user.age }} years old.
 <form method="post" action="{% url 'logout' %}">
   {% csrf_token %}
-  <button type="submit" class="nav-link">Log Out</button>
+  <button type="submit" class="btn btn-primary btn-md">Log Out</button>
 </form>
-
+<form method="get" action="{% url 'article_list' %}">
+    <button type="submit" class="btn btn-primary btn-md">
+        View all articles
+    </button>
+</form>
 {% else %}
 <p>You are not logged in</p>
 <a href="{% url 'login' %}">Log In</a> |
