@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
-from django.urls import reverse  # new
-
+from django.urls import reverse 
 
 class UsersManagersTests(TestCase):
     def test_create_user(self):
@@ -14,7 +13,6 @@ class UsersManagersTests(TestCase):
         self.assertTrue(user.is_active)
         self.assertFalse(user.is_staff)
         self.assertFalse(user.is_superuser)
-
     def test_create_superuser(self):
         User = get_user_model()
         admin_user = User.objects.create_superuser(
@@ -28,17 +26,14 @@ class UsersManagersTests(TestCase):
         self.assertTrue(admin_user.is_staff)
         self.assertTrue(admin_user.is_superuser)
 
-
-class SignupPageTests(TestCase):  # new
+class SignupPageTests(TestCase):
     def test_url_exists_at_correct_location_signupview(self):
         response = self.client.get("/accounts/signup/")
         self.assertEqual(response.status_code, 200)
-
     def test_signup_view_name(self):
         response = self.client.get(reverse("signup"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "registration/signup.html")
-
     def test_signup_form(self):
         response = self.client.post(
             reverse("signup"),
